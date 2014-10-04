@@ -1,0 +1,970 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Wave CAD</title>
+
+
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/movieplayer.css">
+  <link rel="stylesheet" href="css/tourguide.css">
+  <link rel="stylesheet" href="css/folder.css">
+  <link rel="stylesheet" href="css/error.css">
+
+
+  <link rel="stylesheet" href="css/ubuntu.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" type="text/css" href="css/custom2.css">
+  <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+
+</head>
+
+<body onload="initmaxwell()">
+
+  <!--  top -->
+
+  <div id="top" class="dropShadow">
+    <div id="top-left">
+      <div id="control-buttons">
+        <div id="close"></div>
+        <div id="min"></div>
+        <div id="max"></div>
+      </div>
+      <div id="dash-control-buttons">
+        <div class="close"></div>
+        <div class="min"></div>
+        <div class="max"></div>
+      </div>
+      <div id="title">
+		<a href="http://java-scripts.github.io/" class="select-menu">Home</a>
+		<a  target="#file-menu" class="select-menu">File</a>		
+		<ul id="file-menu" class="select-menu-options">
+			<li ><a href="#" onclick="openFile();">Open</a></li>
+			<li><a href="#" onclick="saveAs();">SaveAs</a></li>			
+		</ul>
+		
+		
+		
+      </div>
+    </div>
+    <div id="top-right">
+      <div id="connection" class="">
+        <img src="img/top/connection.png" alt="">
+        <ul class="drop-down" style="display: none;">
+          <li class="disabled">
+            Auto eth0
+          </li>
+          <li class="disabled">
+            Disconnect
+          </li>
+          <li class="divider"></li>
+          <!--<li class="disabled"><img src="img/top/wireless-icon.png" alt=""/> My Wireless Connection</li>
+						<li class="disabled">Disconnect</li>
+						<li class="divider"></li>-->
+          <li class="disabled">
+            Connection Information
+          </li>
+          <li class="disabled">
+            Edit Connections…
+          </li>
+        </ul>
+      </div>
+      <div id="bluetooth" class="">
+        <img src="img/top/bluetooth.png" alt="">
+        <ul class="drop-down" style="display: none;">
+          <li class="disabled bluetooth">
+            Bluetooth On
+          </li>
+          <li>
+            Turn Off Bluetooth
+          </li>
+          <li class="divider"></li>
+          <li class="disabled BtOn">
+            Visible
+          </li>
+          <li class="divider BtOn"></li>
+          <li class="disabled BtOn">
+            Send files to device…
+          </li>
+          <li class="disabled BtOn">
+            Browse files on device…
+          </li>
+          <li class="divider"></li>
+          <li class="disabled BtOn">
+            Setup new device…
+          </li>
+          <li class="divider BtOn"></li>
+          <li class="disabled">
+            Preferences
+          </li>
+        </ul>
+      </div>
+      <div id="message" class="">
+        <img src="img/top/gotmessage.jpg" class="message-logo" alt="">
+        <ul class="drop-down" style="display: none;">
+          <li class="system-message" style="background-image: url(img/top/chat.jpg);"></li>
+        </ul>
+      </div>
+      <div id="speakers" class="">
+        <img src="img/top/speakers3.png" class="speakers-logo" alt="">
+        <ul class="drop-down" style="display: none;">
+          <li>
+            Mute
+          </li>
+          <li class="system-volume">
+            <div class="large-icon" style="background-image: url(img/top/100slider.jpg);"></div>
+            <div class="small-icon" style="background-image: url(img/top/0slider.jpg);"></div>
+            <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="background-image: url(img/speaker-bg-slider.png);">
+              <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 30%; background-image: url(img/button-slider.png);"></a>
+            </div>
+            <div class="slider-active"></div>
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            <img src="img/top/rhythmbox.png" alt="">Rhythmbox
+          </li>
+          <li class="banshee">
+            <div class="banshee-rewind" style="background-image: url(img/top/banshee-rewind.png);"></div>
+            <div class="banshee-forward" style="background-image: url(img/top/banshee-forward.png);"></div>
+            <div class="banshee-play" style="background-image: url(img/top/banshee-play.png);"></div>
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            Sound Settings…
+          </li>
+        </ul>
+      </div>
+      <div id="time" class="">
+        <p>13:08</p>
+        <ul class="drop-down" style="display: none;">
+          <li class="system-calendar" style="background-image: url(img/top/calendar.jpg);"></li>
+        </ul>
+      </div>
+      <div id="power" class="">
+        <img src="img/top/power.png" alt="">
+        <ul class="drop-down" style="display: none;">
+          <li class="disabled">
+            About This Computer
+          </li>
+          <li class="disabled">
+            Ubuntu Help
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            System Settings…
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            Lock <span class="key-combo">Ctrl+Alt+L</span>
+          </li>
+          <li class="disabled user">
+            Guest Session
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            Logout
+          </li>
+          <li class="divider"></li>
+          <li class="disabled">
+            Suspend
+          </li>
+          <li class="disabled">
+            Restart…
+          </li>
+          <li>
+            Shut Down…
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--  tool tip -->
+
+
+  <div id="tooltip" style="top: 45px; display: none;">
+    <div class="shadow-arrow"></div>
+    <div class="arrow-right"></div>
+    <div id="tooltip-text">
+      Dash home
+    </div>
+  </div>
+
+  <!--  menu  -->
+
+
+  <div id="menu" style="height: 774px;" class="">
+    <ul>
+      <li class="dash" style="background-image: url(img/menu/icon-dash.png);">
+        <span>Dash home</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: none;">
+      </li>
+      <li class="home" style="display: list-item; background-image: url(img/menu/icon-folder.png);" onclick="toggleWindow('#components-window','#inbox-launcher');" id="inbox-launcher">
+        <img src="img/menu/open-arrow.png" class="open-arrow" alt="" style="display: none;" ><span>Components</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: none;">
+      </li>
+      <li class="settings" style="background-image: url(img/menu/icon-systemsettings.png);" onclick="toggleWindow('#settings-window','#settings-launcher')" id="settings-launcher">
+        <img src="img/menu/open-arrow.png" class="open-arrow" alt="" style="display: none;"><span>Display Settings</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: none;">
+      </li>
+      <li class="shotwell temp" style="background-image: url(img/menu/icon-shotwell.png); display: list-item; z-index: 3;" onclick="toggleWindow('#properties-window','#properties-launcher');" id="properties-launcher">
+        <img src="img/menu/open-arrow.png" class="open-arrow" alt="" style="display: none;"><span> Properties Editor</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: none;">
+      </li>
+       <li class="shotwell temp" style="background-image: url(img/menu/icon-writer.png); display: list-item; z-index: 3;" onclick="toggleWindow('#code-window','#codewindow-launcher');" id="codewindow-launcher">
+        <img src="img/menu/open-arrow.png" class="open-arrow" alt="" style="display: inline;"><span>Code Editor</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: inline;">
+      </li>
+       <li class="shotwell temp" style="background-image: url(img/menu/icon-impress.png); display: list-item; z-index: 3;" onclick="toggleWindow('#folder-window','#folderwindow-launcher');" id="folderwindow-launcher">
+        <img src="img/menu/open-arrow.png" class="open-arrow" alt="" style="display: inline;"><span>Code Editor</span>
+        <img src="img/menu/selected-arrow.png" class="selected-window-arrow" alt="" style="display: inline;">
+      </li>
+      
+      
+      <!--<li class="workspace"><span>Workspace Switcher</span></li>-->
+      <li class="rubbish bottom" style="background-image: url(img/menu/icon-trashempty.png);">
+        <span>Rubbish bin</span>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <!-- CadWindow -->
+
+  <div class=" tour-guide draggable" style="left: 395px; top: 35px; z-index: 1; height: 520px; width: 600px; padding: 1px;">
+    <div class="next-button">&#x9B;</div>
+    <div class="prev-button">&#x8B;</div>
+    <div class="guide-container shotwell" style="display: block; z-index: 1;">
+      <div class="guide-logo">
+        <img src="img/tourguide/shotwell-small.png">
+      </div>
+      <h3>CAD Window</h3>
+    </div>
+    <div class="canvasContainer">
+      <canvas id="canvas" width="600" height="400" class="canvas"></canvas>
+      <div class="component-receiver" style="height: 0px;">
+        <div id="container"></div>
+        <div id="monitorContainer"></div>
+        <div id="sourceContainer"></div>
+      </div>
+    </div>
+    <div class="tour-buttons">
+      <div class="control">
+        <button class="btn btn-primary btn-block btn-icon-onoff" title="On-Off" value="off"><i class="ui-icon ui-icon-power"></i>
+        </button>
+      </div>
+      <div class="control">
+        <button class="btn btn-primary  btn-icon-refresh" title="Refresh"><i class="ui-icon ui-icon-refresh"></i>
+        </button>
+      </div>
+      <div class="control">
+        <button class="btn btn-primary  btn-icon-play-pause" title="Play" value="pause"><i class="ui-icon ui-icon-play"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- components Window-->
+
+
+  <div id="components-window" class=" window draggable" style="left: 80px; top: 33px; z-index: 2; display: block;">
+    <div class="control">
+      <div class="close" style="background-image: url(img/folder/close.jpg);" onclick="$('#components-window').hide()"></div>
+      <div class="min" style="background-image: url(img/folder/minimise.jpg);"></div>
+      <div class="max" style="background-image: url(img/folder/maximise.jpg);"></div>
+      <div class="window-title">
+        Components Window
+
+      </div>
+    </div>
+
+    <div class="error-container" style="width: 300px;">
+      <p>Drag the below components and drop it to CAD Window</p>
+     <div class="title" onclick="$(this).next().slideToggle(500);">
+      	<b>Emitters</b> 
+      </div>
+      <div class="container" style="display:block;">
+        <div class="container-holder" id="emitterContainer">
+          <div class="holder" profile="point" type="source"></div>
+          <div class="holder" profile="gauss" type="source"></div>
+          <div class="holder" profile="line" type="source"></div>
+        </div>
+      </div>
+       <div class="title" onclick="$(this).next().slideToggle(500);">
+      	<b>Absorbers </b>
+      </div>     
+      <div class="container" style="display:none;">
+        <div class="container-holder" id="absorberContainer">
+          <div class="holder" profile="rectangle" type="slab"></div>
+          <!-- <div class="holder" profile="circle" type="slab"></div>
+          <div class="holder" profile="triangle" type="slab"></div>-->
+        </div>
+      </div>
+       <div class="title" onclick="$(this).next().slideToggle(500);">
+      	<b>Monitors</b> 
+      </div>    
+      <div class="container" style="display:none;">
+        <div class="container-holder" id="monitorContainer">
+          <div class="holder" profile="line" type="monitor"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- code window -->
+    <div id="code-window" class=" window draggable" style="left: 180px; top: 63px; z-index: 2; display: none;">
+    <div class="control">
+      <div class="close" style="background-image: url(img/folder/close.jpg);" onclick="$('#code-window').hide();"></div>
+      <div class="min" style="background-image: url(img/folder/minimise.jpg);"></div>
+      <div class="max" style="background-image: url(img/folder/maximise.jpg);"></div>
+      <div class="window-title">
+       Code Window
+      </div>
+    </div>
+   	<div class="body">
+<textarea id="code-output-area" style="width: 600px;height: 400px;overflow:auto;">
+	grid.empty();
+	grid.init();
+	container.createComponent({
+	      type:'source',cx:3,cy:3.5,profile:'line',
+	       line:{width:6}
+	});
+	var d=0;
+	for(var i=0.2;i<4;i=i+d){
+	d=d+0.1;
+	container.createComponent({
+	    type:'slab',
+	cx:(i+d),cy:0,
+	width:0.1,height:3.5,eps:100,sigma:100 ,sigmah:0.2
+
+	   });
+	}
+	grid.simulation.start();	
+              </textarea>
+   	</div>
+<div class="footer">
+<button class="btn btn-block btn-primary btn-block" onclick="executeScript('code-output-area');$('#code-window').hide();" title="Execute"><i class="left">Execute</i><i class="icon-play-circle right"></i>
+              </button>
+</div>   	
+  </div>
+
+  <!-- Properties Window-->
+  <div id="properties-window" class="window draggable" style="left: 1011.9931030273438px; top: 35.49652862548828px; z-index: 2; display: block;">
+    <div class="control">
+      <div class="close" style="background-image: url(img/folder/close.jpg);" onclick="$('#properties-window').hide()"></div>
+      <div class="min" style="background-image: url(img/folder/minimise.jpg);" ></div>
+      <div class="max" style="background-image: url(img/folder/maximise.jpg);"></div>
+      <div class="window-title">
+        Properties
+      </div>
+    </div>
+    <div class="container" style="display:none;">
+      <div class="section">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          content
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="section props-panel" id="props-panel-grid" style="display:block;">
+        <div class="title">
+          Grid-Properties
+        </div>
+        <div class="content">
+          <table class="table">
+            <tr>
+              <td>Xmin</td>
+              <td>
+                <input type="text" class="field1" id="grid-xmin">
+              </td>
+            </tr>
+            <tr>
+              <td>Xmax</td>
+              <td>
+                <input type="text" class="field1" id="grid-xmax">
+              </td>
+            </tr>
+            <tr>
+              <td>Ymin</td>
+              <td>
+                <input type="text" class="field1" id="grid-ymin">
+              </td>
+            </tr>
+            <tr>
+              <td>Ymax</td>
+              <td>
+                <input type="text" class="field1" id="grid-ymax">
+              </td>
+            </tr>
+            <tr>
+              <td>Nx: &#x25a5;</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-Nx">
+              </td>
+            </tr>
+            <tr>
+              <td>Ny: &#x25a4;</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-Ny">
+              </td>
+            </tr>
+            <tr>
+              <td>PML width</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-pmlWidth">
+              </td>
+            </tr>
+            <tr>
+              <td>Permitivity(&#1013;)</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-settings-eps">
+              </td>
+            </tr>
+            <tr>
+              <td>Conductivity(&#963;)</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-settings-sigma">
+              </td>
+            </tr>
+            <tr>
+              <td>MagneticLoss(&#963;*)</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-settings-sigmah">
+              </td>
+            </tr>
+            <tr>
+              <td>Permeability(&#956;)</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-settings-mu">
+              </td>
+            </tr>
+            <tr>
+              <td>dt'(Calculated)</td>
+              <td>
+                <input type="text" style="" readonly class="field1" id="grid-dt1">
+              </td>
+            </tr>
+            <tr>
+              <td>dt(Preferred): dt &lt; dt'</td>
+              <td>
+                <input type="text" style="" class="field1" id="grid-dt2">
+              </td>
+            </tr>
+            <tr>
+              <td>Simulation Stop Time</td>
+              <td>
+                <input type="text" class="field1" id="grid-stopTime">
+              </td>
+            </tr>
+            <tr>
+              <td>LaunchMode:</td>
+              <td>TE:
+                <input type="radio" class="grid-launchmode" name="grid-launchmode" id="grid-launchmode-TE" value="TE">TM:
+                <input type="radio" class="grid-launchmode" name="grid-launchmode" id="grid-launchmode-TM" value="TM">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button class="btn btn-primary btn-block btn-grid-update"><i class="left">Update</i><i class="icon-bell right"></i>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section props-panel" style="display:none;" id="props-panel-source">
+        <div class="title">
+          Source Properties
+        </div>
+        <div class="content">
+          <table class="table">
+            <tr>
+              <td>&#x3bb;</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-wavelength">
+              </td>
+            </tr>
+            <tr>
+              <td>X</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-cx">
+              </td>
+            </tr>
+            <tr>
+              <td>Y</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-cy">
+              </td>
+            </tr>
+            <tr>
+              <td>Profile</td>
+              <td>
+                <input type="radio" style="" class="source-profile" name="source-profile" id="source-profile-point" value="point">Point
+                <input type="radio" style="" class="source-profile" name="source-profile" id="source-profile-gauss" value="gauss">Gauss
+                <input type="radio" style="" class="source-profile" name="source-profile" id="source-profile-line" value="line">Line
+              </td>
+            </tr>
+            <tr>
+              <td>Width</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-gauss-width">
+              </td>
+            </tr>
+            <tr>
+              <td>Bidirectional</td>
+              <td>
+                <input type="radio" class="source-gauss-bidirectional" name="source-gauss-bidirectional" id="source-gauss-bidirectional-true" value="true">Yes
+                <input type="radio" class="source-gauss-bidirectional" name="source-gauss-bidirectional" id="source-gauss-bidirectional-false" value="false">No</td>
+            </tr>
+            <tr>
+              <td>Width</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-line-width">
+              </td>
+            </tr>
+            <tr>
+              <td>Bidirectional</td>
+              <td>
+                <input type="radio" class="source-line-bidirectional" name="source-line-bidirectional" id="source-line-bidirectional-true" value="true">Yes
+                <input type="radio" class="source-line-bidirectional" name="source-line-bidirectional" id="source-line-bidirectional-false" value="false">No
+              </td>
+            </tr>
+            <tr>
+              <td>Mode</td>
+              <td>
+                <input type="radio" style="" class="source-mode" name="source-mode" id="source-mode-cw" value="cw">CW
+                <input type="radio" style="" class="source-mode" name="source-mode" id="source-mode-pulse" value="pulse">Pulse
+              </td>
+            </tr>
+            <tr>
+              <td>OffTime</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-pulse-offTime">
+              </td>
+            </tr>
+            <tr>
+              <td>OnTime</td>
+              <td>
+                <input type="text" style="" class="field1" id="source-pulse-onTime">
+              </td>
+            </tr>
+            <tr>
+              <td>Repeated</td>
+              <td>
+                <input type="radio" class="source-pulse-repeated radio2" name="source-pulse-repeated" id="source-pulse-repeated-true" value="true">Yes
+                <input type="radio" class="source-pulse-repeated radio2" name="source-pulse-repeated" id="source-pulse-repeated-false" value="false">No
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button class="btn btn-primary btn-block btn-src-update"><i class="left">Update</i><i class="icon-bell right"></i> 
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section props-panel" style="display:none;" id="props-panel-slab">
+        <div class="title">
+          Slab Properties
+        </div>
+        <div class="content">
+          <table class="table">
+            <tr>
+              <td>X</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-cx">
+              </td>
+            </tr>
+            <tr>
+              <td>Y</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-cy">
+              </td>
+            </tr>
+            <tr>
+              <td>Width</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-width">
+              </td>
+            </tr>
+            <tr>
+              <td>Height</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-height">
+              </td>
+            </tr>
+            <tr>
+              <td>Permittivity</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-eps">
+              </td>
+            </tr>
+            <tr>
+              <td>Permeability</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-mu">
+              </td>
+            </tr>
+            <tr>
+              <td>Conductivity</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-sigma">
+              </td>
+            </tr>
+            <tr>
+              <td>Magnetic loss</td>
+              <td>
+                <input type="text" style="" class="field1" id="slab-sigmah">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button class="btn btn-primary btn-block btn-slab-update"><i class="left">Update</i><i class="icon-bell right"></i> 
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section props-panel" style="display:none;" id="props-panel-monitor">
+        <div class="title">
+          Monitor Properties
+        </div>
+        <div class="content">
+          <table class="table">
+            <tr>
+              <td>X</td>
+              <td>
+                <input type="text" style="" class="field1" id="monitor-cx">
+              </td>
+            </tr>
+            <tr>
+              <td>Y</td>
+              <td>
+                <input type="text" style="" class="field1" id="monitor-cy">
+              </td>
+            </tr>
+            <tr>
+              <td>Width</td>
+              <td>
+                <input type="text" style="" class="field1" id="monitor-width">
+              </td>
+            </tr>
+            <tr>
+              <td>Height</td>
+              <td>
+                <input type="text" style="" class="field1" id="monitor-height">
+              </td>
+            </tr>
+            <tr>
+              <td>TE-Display Field</td>
+              <td>
+                Ez:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Ez" value="Ez">Hx:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Hx" value="Hx">Hy:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Hy" value="Hy">
+              </td>
+            </tr>
+            <tr>
+              <td>TM-Display Field</td>
+              <td>
+                Hz:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Hz" value="Hz">Ex:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Ex" value="Ex">Ey:
+                <input type="radio" class="monitor-settings-display-field" name="monitor-settings-display-field" id="monitor-settings-display-field-Ey" value="Ey">
+              </td>
+            </tr>
+            <tr>
+              <td>Plot</td>
+              <td>
+                Amplitude:
+                <input type="radio" class="monitor-settings-display-type" name="monitor-settings-display-type" id="monitor-settings-display-type-Amplitue" value="Amplitude">Intensity:
+                <input type="radio" class="monitor-settings-display-type" name="monitor-settings-display-type" id="monitor-settings-display-type-Intensity" value="Intensity">Eps:
+                <input type="radio" class="monitor-settings-display-type" name="monitor-settings-display-type" id="monitor-settings-display-type-Epz" value="Eps">
+              </td>
+            </tr>
+            <tr>
+              <td>Stroke</td>
+              <td>
+                Enable:
+                <input type="checkbox" class="monitor-settings-display-stroke" id="monitor-settings-display-stroke">Color:
+                <input type="color" id="monitor-settings-display-strokeColor">
+                <br>Size:
+                <input type="range" min="1" max="5" step="1" value="1" id="monitor-settings-display-strokeSize">
+                <br>
+
+              </td>
+            </tr>
+            <tr>
+              <td>Fill</td>
+              <td>
+                Enable:
+                <input type="checkbox" id="monitor-settings-display-fill">Color:
+                <input type="color" value="#ff0000" id="monitor-settings-display-fillColor">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button class="btn btn-primary btn-block btn-monitor-update"><i class="left">Update</i><i class="icon-bell right"></i>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Display Settings -->
+  <div id="settings-window"  class="tour-guide draggable" style="left: 669.96875px; top: 563.96875px; height: 33%; width: 450px;">    
+	    <div class="close-button" onclick="$('#settings-window').hide();" style="border:0px;"><span style="font-size: 20px;" >&#x24e7;</span></div>
+    <div class="next-button">&#x9B;</div>
+    <div class="prev-button">&#x8B;</div>
+
+    <div class="guide-container shotwell" style="display: block; z-index: 3;">
+      <div class="guide-logo">
+        <img src="img/tourguide/shotwell-small.png">
+      </div>
+     
+      <h3>Display Settings</h3>	
+   
+    
+  
+    </div>
+    <div class="container" style="margin-top: 45px;padding: 10px;background: rgba(128, 23, 23, 0.9);display:none;">
+      <div class="section">
+        <table class="table">
+          <tr>
+            <td>ColorModel</td>
+            <td>
+              Wave:
+              <input type="radio" class="color-settings-modal" name="color-settings-modal" checked value="1">Sand:
+              <input type="radio" class="color-settings-modal" name="color-settings-modal" value="2">Plane:
+              <input type="radio" class="color-settings-modal" name="color-settings-modal" value="3">Binary:
+              <input type="radio" class="color-settings-modal" name="color-settings-modal" value="4">
+            </td>
+          </tr>
+          <tr>
+            <td>Hue</td>
+            <td>
+              <input type="range" min="0" max="1" step="0.01" value="0.51" id="grid-settings-color-hue" class="color-range">
+            </td>
+          </tr>
+          <tr>
+            <td>Saturation</td>
+            <td>
+              <input type="range" min="0" max="0.9" step="0.01" value="0.32" id="grid-settings-color-saturation" class="color-range">
+            </td>
+          </tr>
+          <tr>
+            <td>Intensity</td>
+            <td>
+              <input type="range" min="0" max="2" step="0.01" value="1.4" id="grid-settings-color-intensity" class="color-range">
+            </td>
+          </tr>
+          <tr>
+            <td>gamma</td>
+            <td>
+              <input type="range" min="0" max="4" step="0.01" value="1" id="grid-settings-color-gamma" class="color-range">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 45px;padding: 10px;background: rgba(128, 23, 23, 0.9);disaply:none;">
+      <div class="section">
+        <div class="title">
+          Display Controls
+        </div>
+        <div class="content">
+          <table class="table">
+            <tr>
+              <td>SimSpeed</td>
+              <td>
+                <input type="range" min="0" max="1000" value="1000" step="50" id="grid-settings-speed">
+              </td>
+            </tr>
+            <tr>
+              <td>Refresh Rate</td>
+              <td>
+                <input type="range" min="1" max="51" value="51" step="10" id="grid-settings-refreshrate">
+              </td>
+            </tr>
+            <tr>
+              <td>Display</td>
+              <td>
+                Grid
+                <input type="checkbox" id="grid-settings-display-grid" class="grid-settings-display">Time
+                <input type="checkbox" id="grid-settings-display-time" class="grid-settings-display" checked>Axes
+                <input type="checkbox" id="grid-settings-display-axes" class="grid-settings-display" checked>PML
+                <input type="checkbox" id="grid-settings-display-pml" class="grid-settings-display">Matrix
+                <input type="checkbox" id="grid-settings-display-matrix" class="grid-settings-display">
+              </td>
+            </tr>
+            <tr>
+              <td>TE-Display Field</td>
+              <td>
+                Ez:
+                <input type="radio" class="grid-settings-displayField" name="grid-settings-displayField" id="grid-settings-displayField-Ez" value="Ez" checked>Hx:
+                <input type="radio" class="grid-settings-displayField" name="grid-settings-displayField" id="grid-settings-displayField-Hx" value="Hx">Hy:
+                <input type="radio" class="grid-settings-displayField" name="grid-settings-displayField" id="grid-settings-displayField-Hy" value="Hy">
+              </td>
+            </tr>
+            <tr>
+              <td>TM-Display Field:</td>
+              <td>
+                Hz:
+                <input type="radio" id="grid-settings-showAxes">Ex:
+                <input type="radio" id="grid-settings-showAxes">Ey:
+                <input type="radio" id="grid-settings-showAxes">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- folder window start-->
+
+<div id="folder-window" class="folder window draggable selected-window" style="left: 86.5px; top: 247px; display: none; z-index: 4;">
+			<div class="control">
+				<div class="close" onclick="$('#folder-window').hide();"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">Home</div>
+			</div>
+
+			<div class="buttons">
+					<div class="folder-back disabled"></div>
+					<div class="folder-forward disabled"></div>
+				</div>
+				<div class="bottom-buttons"><div data-id="0" class="selected"><span class="home"></span>Home</div></div>
+				<div style="clear:both;"></div>
+			<div class="folder-list">
+				<div class="list">
+					<p>
+						Examples
+					</p>
+					<ul>
+						<li class="home" data-folder="home">Home</li>
+						<!--
+						<li class="desktop" data-folder="5">Desktop</li>
+						<li class="documents" data-folder="0">Documents</li>
+						<li class="downloads" data-folder="1">Downloads</li>
+						<li class="music" data-folder="2">Music</li>
+						<li class="pictures" data-folder="4">Pictures</li>
+						<li class="videos" data-folder="3">Videos</li>
+						<li class="rubbish" data-folder="bin">Rubbish bin</li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="folder-contents">
+				<div class="contents">			
+					<div class="example file-folder icon-document display-icon" data-type="folder" data-id="5" scriptAreaId="example1">
+						<p></p><span>Refraction</span>						
+					</div>
+					<div class="example file-folder icon-document display-icon" data-type="folder" data-id="4"  scriptAreaId="example2">
+						<p></p><span>Interference</span>
+					</div>
+					<div class="example file-folder icon-document display-icon" data-type="folder" data-id="3"  scriptAreaId="example3">
+						<p></p><span>WaveGuide SingleMode</span>
+					</div>
+					<div class="example file-folder icon-document display-icon" data-type="folder" data-id="2"  scriptAreaId="example4">
+						<p></p><span>GuideWidth-Guidevelociy</span>
+					</div>
+					<div class="example file-folder icon-document display-icon" data-type="folder" data-id="1"  scriptAreaId="example5">
+						<p></p><span>Monitor</span>
+					</div>
+					
+				<div class="selected-details"></div>
+			</div>
+		</div>
+
+<!-- folder window end-->
+
+
+<div style="display:none;">
+<input type="file" id="fileopen" style="display:none;" onchange="loadFileToTextArea('code-output-area');">
+<textarea id="example1" style="width:100%;height:300px">grid.empty();
+grid.init({"canvasWidth":600,"canvasHeight":400,"Nx":100,"Ny":100,"xmin":0,"xmax":6,"ymin":0,"ymax":4,"dt":"","counter":2492,"c0":1,"pmlWidth":10,"mu":1,"eps":1,"sigma":0.2,"sigmah":0,"stopTime":null,"mode":"TE","color":{"model":3,"hue":0.69,"saturation":0.62,"intensity":2,"gamma":2.04}});
+container.createComponent({"cx":2.9797919034957885,"cy":2.0153819608688357,"width":"0.2","height":0.2,"wavelength":0.5,"profile":"point","gauss":{"width":0.2,"bidirectional":false},"line":{"width":2,"bidirectional":false},"mode":"cw","pulse":{"offTime":2,"onTime":0.5,"repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+container.createComponent({"cx":0.30989593505859375,"cy":0.2597222900390625,"width":2.69777777671814,"height":3.5177777767181397,"eps":3,"mu":1,"sigma":0.2,"sigmah":0,"panel":"space","oncomplete":null,"type":"slab"});grid.startSimulation();
+</textarea>
+<textarea id="example2">
+grid.empty();
+grid.init({"canvasWidth":600,"canvasHeight":400,"Nx":100,"Ny":100,"xmin":0,"xmax":6,"ymin":0,"ymax":4,"dt":"","counter":3559,"c0":1,"pmlWidth":10,"mu":1,"eps":1,"sigma":0.2,"sigmah":0,"stopTime":null,"mode":"TE","color":{"model":3,"hue":0.78,"saturation":0.28,"intensity":2,"gamma":2.21}});
+container.createComponent({"cx":"1.50","cy":"3.60","width":"0.2","height":0.2,"wavelength":"0.5","profile":"point","gauss":{"width":"0.2","bidirectional":false},"line":{"width":"2","bidirectional":false},"mode":"cw","pulse":{"offTime":"2","onTime":"0.5","repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+container.createComponent({"cx":"4.50","cy":"3.60","width":"0.2","height":0.2,"wavelength":"0.5","profile":"point","gauss":{"width":"0.2","bidirectional":false},"line":{"width":"2","bidirectional":false},"mode":"cw","pulse":{"offTime":"2","onTime":"0.5","repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+grid.startSimulation();
+</textarea>
+<textarea id="example3">
+grid.empty();
+grid.init({"canvasWidth":600,"canvasHeight":400,"Nx":100,"Ny":100,"xmin":0,"xmax":6,"ymin":0,"ymax":4,"dt":"","counter":314,"c0":1,"pmlWidth":15,"mu":1,"eps":1,"sigma":0.2,"sigmah":0,"stopTime":null,"mode":"TE","color":{"model":3,"hue":0.25,"saturation":0.4,"intensity":1.71,"gamma":1.3}});
+container.createComponent({"cx":"4.04","cy":"0.35","width":"0.5","height":"3.12","eps":"3.00","mu":"1.00","sigma":"0.20","sigmah":"0.00","panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":"4.30","cy":"3.32","width":1,"height":0.2,"wavelength":"1","profile":"gauss","gauss":{"width":"0.5","bidirectional":false},"line":{"width":"2","bidirectional":false},"mode":"cw","pulse":{"offTime":"2","onTime":"0.5","repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+grid.startSimulation();
+</textarea>
+<textarea id="example4">
+grid.empty();
+grid.init({"canvasWidth":600,"canvasHeight":400,"Nx":100,"Ny":100,"xmin":0,"xmax":6,"ymin":0,"ymax":4,"dt":"","counter":124,"c0":1,"pmlWidth":10,"mu":1,"eps":1,"sigma":0.2,"sigmah":0,"stopTime":null,"mode":"TE","color":{"model":3,"hue":0,"saturation":0.9,"intensity":2,"gamma":0.76}});
+container.createComponent({"cx":3,"cy":3.5,"width":6,"height":0.2,"wavelength":0.5,"profile":"line","gauss":{"width":0.2,"bidirectional":false},"line":{"width":6},"mode":"cw","pulse":{"offTime":2,"onTime":0.5,"repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+container.createComponent({"cx":0.30000000000000004,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":0.5,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":0.8,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":1.2000000000000002,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":1.7000000000000002,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":2.3000000000000003,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":3,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":3.8,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+container.createComponent({"cx":4.699999999999999,"cy":0,"width":0.1,"height":3.5,"eps":100,"mu":1,"sigma":100,"sigmah":0.2,"panel":"space","oncomplete":null,"type":"slab"});
+grid.startSimulation();
+</textarea>
+<textarea id="example5">grid.empty();
+grid.init({"canvasWidth":600,"canvasHeight":400,"Nx":100,"Ny":100,"xmin":0,"xmax":6,"ymin":0,"ymax":4,"dt":"","counter":2671,"c0":1,"pmlWidth":10,"mu":1,"eps":1,"sigma":0.2,"sigmah":0,"stopTime":null,"display":{"mode":"TE","field":"Ez","grid":false,"time":true,"axes":true,"pml":false,"matrix":false,"refreshrate":1},"color":{"model":1,"hue":0.42,"saturation":0.26,"intensity":1.48,"gamma":1.86}});
+container.createComponent({"cx":1.91,"cy":1.84,"width":2.71,"height":0.8800000000000001,"display":{"field":"Ez","type":"Amplitude","stroke":false,"strokeSize":"2","strokeColor":"#fffebd","fill":true,"fillColor":"#73002a"},"panel":"space","oncomplete":null,"type":"monitor","x1":31,"x2":77,"y1":46,"y2":68,"y":57});
+container.createComponent({"cx":1.04,"cy":2.23,"width":"0.2","height":0.2,"wavelength":0.5,"profile":"point","gauss":{"width":0.2,"bidirectional":false},"line":{"width":2,"bidirectional":false},"mode":"cw","pulse":{"offTime":2,"onTime":0.5,"repeated":true},"panel":"space","oncomplete":null,"type":"source"});
+grid.startSimulation();</textarea>
+			
+
+</div>
+
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/ubuntu.js"></script>
+  <script src="js/maxwell.js"></script>
+  <script src="js/controller.js"></script>
+
+
+</body>
+
+</html>

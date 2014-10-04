@@ -1,0 +1,95 @@
+
+body{
+  /*background: linear-gradient(to bottom, white, #6A8500);
+ background-size: 100% 150%;
+ */
+ background-image:url('../img/ubuntu_bg1.jpg');
+  background-size: 100% 800px;
+}
+
+
+
+
+
+
+#canvas{
+	background:grey;
+}
+
+.container-holder{
+margin: 0px auto;
+background: #E4E4E4;
+padding: 30px;
+box-shadow: 5px 5px 5px inset;
+}
+
+.holder{
+height: 20px;
+position: relative;
+margin: 10px;
+}
+
+
+
+
+
+.source{	
+width: 15px;
+height: 15px;
+background: #DD4814;
+border: #F0F8FF;
+border-radius: 15px;
+border-top: 3px solid #EBD5CD;
+border-right: 3px solid #C54416;
+border-bottom: 3px solid #68230B;
+border-left: 3px solid #F5AE95;
+box-shadow: 1px 1px 1px #000;
+margin-bottom: 5px;
+box-shadow:inset 0px -10px 5px rgba(0,0,0,0.5);
+}
+
+.source:hover{
+background:red;
+}
+
+
+.slab{
+ background: none repeat scroll 0 0 rgba(200, 200, 255, 0.1);
+  --border: 1px solid;
+    height: 40px;
+    left: 15px;
+    position: absolute;
+    top: 17px;
+    width: 65px;	
+	box-shadow:inset 4px 4px 0px rgba(100,100,100,0.4);
+	border-right:5px solid rgba(200,200,200,0.4);
+	border-bottom:5px solid rgba(100,100,100,0.4);
+}
+.slab:hover{
+	background:rgba(144, 144, 255, 0.5);
+}
+.monitor{
+ background: none repeat scroll 0 0 rgba(200, 200, 255, 0.1);
+  --border: 1px solid;
+    height: 40px;
+    left: 15px;
+    position: absolute;
+    top: 17px;
+    width: 65px;
+	
+	box-shadow:inset 4px 4px 0px rgba(100,100,100,0.4);
+	border-right:5px solid rgba(200,200,200,0.4);
+	border-bottom:5px solid rgba(100,100,100,0.4);
+
+}
+.monitor:hover{
+	background:rgba(190, 255, 190, 0.5);
+}
+
+.error-container .title{
+border-top: 3px solid #FFF;
+border-bottom: 3px solid #AAA;
+padding: 3px;
+background: #D5D5D5;
+}
+ 	

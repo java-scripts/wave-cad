@@ -1,0 +1,56 @@
+#menu ul li{
+	transition: margin-top .1s linear;
+}
+#menu ul li:hover{
+box-shadow: 3px 0px 10px #FDFDFD;
+border-radius: 5px;
+margin-top: 2px;
+height: 47px;
+margin-bottom: 10px;
+}
+
+.select-menu{
+background: rgba(255, 0, 0, 0);
+border: 0px;
+color: #eee;
+padding-right: 20px;
+}
+.select-menu option{
+	
+	border: 0px;
+	margin:0px;
+}
+
+.select-menu-options{
+display:none;
+background:#474642;
+list-style-type: none;
+padding: 5px;
+padding-top: 10px;
+position: absolute;
+box-shadow: -3px 3px 3px #000;
+}
+.select-menu-options li{
+padding:5px;
+}
+.select-menu-options li:hover{
+background: #F16B32;
+color: #FFF;
+}
+.select-menu-options a:visited{
+	color: #eee;
+}
+.select-menu-options a:hover{
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
