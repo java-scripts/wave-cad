@@ -100,3 +100,8 @@ padding: 3px;
 background: #D5D5D5;
 }
  	
+ 	
+ 	
+.ui-helper-hidden{
+	z-index:99999;
+}

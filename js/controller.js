@@ -2,6 +2,44 @@ $('.draggable').draggable();
 
 $('.example').draggable({revert:true});
 
+$(document).contextmenu({
+		delegate: ".source,.slab,.monitor",
+		preventContextMenuForPopup: true,
+		preventSelect: true,
+		taphold: true,
+		menu: [
+			{title: "Delete", cmd: "delete", uiIcon: "ui-icon-trash"},	
+		],		
+		select: function(event, ui) {
+			var $target = ui.target;
+			switch(ui.cmd){
+			case "delete":
+				$target[0].remove();
+				break;
+			case "copy":
+				//to be implimented				
+				break;
+				}			
+		},
+		beforeOpen: function(event, ui) {
+			//return false, to prevent opening the menu now
+			if(!ui.target.parent().attr('id')){
+				return false;
+			}	
+			
+		}
+
+	});
+
+
+
+
+
+
+
+
+
+
 function initmaxwell() {
 
 
@@ -643,10 +681,6 @@ $(document).ready(function() {
       $('#grid-settings-speed').val(1000);
       $('#grid-settings-speed').trigger('change');
     }
-
-
-
-
   });
 
 
